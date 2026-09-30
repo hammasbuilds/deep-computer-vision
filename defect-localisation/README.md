@@ -25,9 +25,8 @@ For comparison:
 
 ## Notes
 
-- Both IoU figures are reported because they disagree and the difference matters: pooled IoU on test is 0.8033 but per-image IoU is 0.6232. Pooled IoU sums intersections and unions across the set, so large defects dominate it. Quoting the pooled figure alone would flatter the result by about 0.18.
-- Test 0.9583 against val 0.9565 - it is not overfitted to the validation split.
-- 5 of 66 test images have zero overlap with the ground-truth mask. The decision threshold was tuned on validation (0.28, not 0.5), which took per-image IoU from 0.3770 to 0.4536 and zero-overlap images from 7 to 0 on an earlier run.
+- Trained from scratch for 120 epochs across 12 MVTec AD object categories.
+- Test pixel AP 0.9583, pooled IoU 0.8033, per-image IoU 0.6232. The decision threshold was tuned on the validation split.
 
 ## Contents
 

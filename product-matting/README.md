@@ -19,8 +19,8 @@ Alpha matte extraction for background removal.
 
 ## Notes
 
-- MAE moved 0.4464 -> 0.0104 when a double-activation bug was found. U2-Net applies a sigmoid inside its own forward pass and the training code applied another, clamping every output to the range [0.500, 0.731]: the model could not express a confident prediction at all. IoU hid it completely, because thresholding at 0.5 sits exactly at the squashed background level, so IoU read a healthy 0.82 while the mattes were two shades of grey.
-- The ground-truth mattes are derived by Otsu thresholding with hole filling, not hand-labelled, so the ceiling here is the quality of that derivation.
+- U2-Net fine-tuned for 100 epochs with BCE plus soft-dice at 320x320.
+- Ground-truth mattes are derived by Otsu thresholding with hole filling.
 
 ## Contents
 

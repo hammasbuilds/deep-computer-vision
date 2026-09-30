@@ -11,7 +11,7 @@ Detect and obscure faces in crowded scenes.
 
 ## Notes
 
-- This project trains nothing. It applies a published detector and blurs what it finds, so there is no learning curve and no held-out metric - it is included because it works and is useful, not as a modelling result.
+- Applies a published face detector and blurs the detected regions. No training is involved; the samples show the pipeline on WIDER FACE.
 
 ## Contents
 
