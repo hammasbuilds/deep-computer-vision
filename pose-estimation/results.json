@@ -1,0 +1,135 @@
+{
+ "task": "2D human pose estimation on COCO val2017 keypoints",
+ "model": "torchvision keypointrcnn_resnet50_fpn, KeypointRCNN_ResNet50_FPN_Weights.COCO_V1, as published, no fine-tuning",
+ "published_metrics_from_weights_meta": {
+  "COCO-val2017": {
+   "box_map": 54.6,
+   "kp_map": 65.0
+  }
+ },
+ "split": "COCO val2017 - held out from the weights' train2017 training set",
+ "n_images_scored": 2346,
+ "n_gt_persons": 6352,
+ "n_gt_persons_matched": 6237,
+ "n_gt_persons_unmatched": 115,
+ "n_labelled_joints_scored": 67391,
+ "n_labelled_joints_all_gt": 68215,
+ "oks_ap": {
+  "AP": 0.656,
+  "AP50": 0.86695,
+  "AP75": 0.71911,
+  "AP_medium": 0.60705,
+  "AP_large": 0.73455,
+  "AR": 0.71815,
+  "AR50": 0.90538,
+  "AR75": 0.77535,
+  "AR_medium": 0.66976,
+  "AR_large": 0.78666
+ },
+ "pck": {
+  "PCK@0.05": {
+   "overall_on_matched": 0.81584,
+   "per_joint": {
+    "nose": 0.95914,
+    "left_eye": 0.96034,
+    "right_eye": 0.9607,
+    "left_ear": 0.94473,
+    "right_ear": 0.93895,
+    "left_shoulder": 0.81895,
+    "right_shoulder": 0.8187,
+    "left_elbow": 0.81667,
+    "right_elbow": 0.81127,
+    "left_wrist": 0.79332,
+    "right_wrist": 0.80892,
+    "left_hip": 0.63875,
+    "right_hip": 0.6389,
+    "left_knee": 0.76766,
+    "right_knee": 0.779,
+    "left_ankle": 0.74495,
+    "right_ankle": 0.74957
+   },
+   "overall_all_gt_persons": 0.80598
+  },
+  "PCK@0.1": {
+   "overall_on_matched": 0.90539,
+   "per_joint": {
+    "nose": 0.97125,
+    "left_eye": 0.97402,
+    "right_eye": 0.97252,
+    "left_ear": 0.97141,
+    "right_ear": 0.96591,
+    "left_shoulder": 0.92257,
+    "right_shoulder": 0.92291,
+    "left_elbow": 0.90378,
+    "right_elbow": 0.90575,
+    "left_wrist": 0.87882,
+    "right_wrist": 0.88077,
+    "left_hip": 0.84548,
+    "right_hip": 0.85074,
+    "left_knee": 0.86509,
+    "right_knee": 0.87478,
+    "left_ankle": 0.83875,
+    "right_ankle": 0.8446
+   },
+   "overall_all_gt_persons": 0.89445
+  },
+  "PCK@0.2": {
+   "overall_on_matched": 0.95364,
+   "per_joint": {
+    "nose": 0.98218,
+    "left_eye": 0.98222,
+    "right_eye": 0.98241,
+    "left_ear": 0.9838,
+    "right_ear": 0.97738,
+    "left_shoulder": 0.96442,
+    "right_shoulder": 0.96514,
+    "left_elbow": 0.95283,
+    "right_elbow": 0.95449,
+    "left_wrist": 0.92683,
+    "right_wrist": 0.93345,
+    "left_hip": 0.94182,
+    "right_hip": 0.94376,
+    "left_knee": 0.9337,
+    "right_knee": 0.93595,
+    "left_ankle": 0.91921,
+    "right_ankle": 0.91801
+   },
+   "overall_all_gt_persons": 0.94212
+  }
+ },
+ "pck_definition": "correct if ||pred-gt|| <= a * max(gt_box_w, gt_box_h); only keypoints with COCO visibility flag v>0 are scored",
+ "match_rule": "greedy box-IoU, threshold 0.5, detections ordered by score",
+ "median_normalised_error_per_joint": {
+  "nose": 0.0088,
+  "left_eye": 0.00783,
+  "right_eye": 0.00799,
+  "left_ear": 0.01034,
+  "right_ear": 0.01071,
+  "left_shoulder": 0.02125,
+  "right_shoulder": 0.02151,
+  "left_elbow": 0.0192,
+  "right_elbow": 0.01883,
+  "left_wrist": 0.01813,
+  "right_wrist": 0.01803,
+  "left_hip": 0.03637,
+  "right_hip": 0.03614,
+  "left_knee": 0.02097,
+  "right_knee": 0.02134,
+  "left_ankle": 0.02244,
+  "right_ankle": 0.02296
+ },
+ "pck02_extremities_wrists_ankles": {
+  "pck": 0.92524,
+  "n_joints": 13698
+ },
+ "pck02_core_shoulders_hips_nose": {
+  "pck": 0.95931,
+  "n_joints": 24477
+ },
+ "what_this_does_not_show": [
+  "One model on one dataset. It says nothing about how this model ranks against any other.",
+  "The scores belong to the published weights, not to any training done here.",
+  "COCO val2017 is held out from training but is the benchmark this model family was developed against, so it is not an out-of-distribution test.",
+  "PCK depends on the normaliser; max(w,h) of the GT box is stated above because the same predictions score differently under torso- or head-normalised variants."
+ ]
+}
