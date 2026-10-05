@@ -29,7 +29,9 @@ This scores [Keypoint R-CNN](https://pytorch.org/vision/stable/models/generated/
 
 The measured OKS AP of **0.656** lands on the published **65.0** for these weights. That
 agreement is the evidence that the protocol here is right; it is not a new result about the
-model.
+model. The run was judged against a pass bar of OKS AP 0.60 set from that published figure,
+on the rule that a score far below it would be a bug in this pipeline rather than a finding
+about the model.
 
 PCK figures above are over matched persons. Counting the 115 unmatched ground-truth persons as
 a total miss on every labelled joint gives PCK@0.2 **0.94212**, PCK@0.1 **0.89445**, PCK@0.05
