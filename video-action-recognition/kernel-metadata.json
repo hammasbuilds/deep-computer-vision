@@ -1,0 +1,15 @@
+{
+  "id": "muhammadhammas13/ucf101-top1-top5-and-confusion-pairs",
+  "title": "UCF101 top1 top5 and confusion pairs",
+  "code_file": "video-action-recognition.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["matthewjansen/ucf101-action-recognition"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

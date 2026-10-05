@@ -7,4 +7,3 @@ __pycache__/
 # Projects are added back once their Kaggle run has produced results.json.
 # A notebook with no measured result is not a project yet.
 
-3d-visualization/volumetric-segmentation/

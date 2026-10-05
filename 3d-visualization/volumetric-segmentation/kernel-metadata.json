@@ -1,7 +1,7 @@
 {
-  "id": "muhammadhammas13/pointnet-part-segmentation-iou",
-  "title": "PointNet part segmentation IoU",
-  "code_file": "pointnet-part-segmentation-iou.ipynb",
+  "id": "muhammadhammas13/3d-unet-brats-dice",
+  "title": "3D UNet BraTS Dice",
+  "code_file": "3d-unet-brats-dice.ipynb",
   "language": "python",
   "kernel_type": "notebook",
   "is_private": false,
@@ -9,7 +9,7 @@
   "enable_tpu": false,
   "enable_internet": true,
   "dataset_sources": [
-    "horsek/shapenetpart-hdf5-2048"
+    "awsaf49/brats20-dataset-training-validation"
   ],
   "competition_sources": [],
   "kernel_sources": [],

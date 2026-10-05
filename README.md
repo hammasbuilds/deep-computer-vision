@@ -14,6 +14,13 @@ Recognition and understanding: segmentation, localisation and detection.
 | [video-instance-segmentation](video-instance-segmentation/) | DAVIS 2017 val, per-frame masks over video | matched IoU 0.76111 at coverage 0.80328 |
 | [anomaly-detection](anomaly-detection/) | UCF-Crime surveillance benchmark | frame-level AUC 0.76329 |
 
+
+> **3-D moved out.** Monocular depth, point-cloud segmentation, novel-view synthesis
+> and volumetric segmentation now live in
+> [3d-computer-vision](https://github.com/hammasbuilds/3d-computer-vision) with the
+> classical 3-D work, so 3-D is findable in one place. This repo keeps recognition
+> and understanding: segmentation, localisation, detection, pose, video and anomaly.
+
 ## Method
 
 The first three projects train a model on a fixed 80/15/5 split and report on train, validation
