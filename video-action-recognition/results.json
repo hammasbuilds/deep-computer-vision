@@ -1,0 +1,670 @@
+{
+ "task": "UCF101 action recognition, linear probe on frozen Kinetics-400 r3d_18 features",
+ "backbone": "torchvision r3d_18, R3D_18_Weights.KINETICS400_V1, frozen",
+ "backbone_published_kinetics_metrics": {
+  "Kinetics-400": {
+   "acc@1": 63.2,
+   "acc@5": 83.479
+  }
+ },
+ "classifier": "multinomial logistic regression on L2-normalised 512-d features",
+ "C_selected_on_val": 100.0,
+ "val_sweep": {
+  "0.1": {
+   "top1": 0.7634,
+   "top5": 0.96858
+  },
+  "1.0": {
+   "top1": 0.84658,
+   "top5": 0.98244
+  },
+  "10.0": {
+   "top1": 0.84473,
+   "top5": 0.97505
+  },
+  "100.0": {
+   "top1": 0.8512,
+   "top5": 0.97412
+  }
+ },
+ "clip_sampling": {
+  "frames_per_clip": 16,
+  "clips_per_video": 1,
+  "aggregation": "mean of clip features",
+  "crop": "resize 171x128, centre crop 112"
+ },
+ "n_classes": 101,
+ "n_train_videos_used": 5050,
+ "n_val_videos_used": 1082,
+ "n_test_videos_used": 3783,
+ "split_source": "official UCF101 split 1 (trainlist01/testlist01, crcv.ucf.edu TrainTestSplits zip)",
+ "split_is_group_disjoint": true,
+ "dataset_own_folder_split_rejected": "the Kaggle dataset's own train/ and test/ folders share video files and split clips rather than UCF101 groups, so they were pooled and re-split",
+ "train_test_basename_overlap": 0,
+ "held_out_test": {
+  "top1": 0.80941,
+  "top5": 0.96405
+ },
+ "held_out_test_single_centre_clip": null,
+ "device": "cpu",
+ "clips_per_video": 1,
+ "max_train_videos_per_class": 50,
+ "reductions_for_cpu_run": [
+  "one centre clip per video instead of three evenly spaced clips",
+  "training videos capped at 50 per class",
+  "the val and official test splits are NOT reduced, so the reported top-1/top-5 is over the whole official test split"
+ ],
+ "train_split_top1_fit_quality_not_a_result": 1.0,
+ "per_class_accuracy": {
+  "ApplyEyeMakeup": {
+   "n": 44,
+   "acc": 0.95455
+  },
+  "ApplyLipstick": {
+   "n": 32,
+   "acc": 0.875
+  },
+  "Archery": {
+   "n": 41,
+   "acc": 0.82927
+  },
+  "BabyCrawling": {
+   "n": 35,
+   "acc": 1.0
+  },
+  "BalanceBeam": {
+   "n": 31,
+   "acc": 0.67742
+  },
+  "BandMarching": {
+   "n": 43,
+   "acc": 0.83721
+  },
+  "BaseballPitch": {
+   "n": 43,
+   "acc": 0.7907
+  },
+  "Basketball": {
+   "n": 35,
+   "acc": 0.82857
+  },
+  "BasketballDunk": {
+   "n": 37,
+   "acc": 0.94595
+  },
+  "BenchPress": {
+   "n": 48,
+   "acc": 1.0
+  },
+  "Biking": {
+   "n": 38,
+   "acc": 0.89474
+  },
+  "Billiards": {
+   "n": 40,
+   "acc": 1.0
+  },
+  "BlowDryHair": {
+   "n": 38,
+   "acc": 0.68421
+  },
+  "BlowingCandles": {
+   "n": 33,
+   "acc": 1.0
+  },
+  "BodyWeightSquats": {
+   "n": 30,
+   "acc": 0.6
+  },
+  "Bowling": {
+   "n": 43,
+   "acc": 1.0
+  },
+  "BoxingPunchingBag": {
+   "n": 49,
+   "acc": 0.77551
+  },
+  "BoxingSpeedBag": {
+   "n": 37,
+   "acc": 0.89189
+  },
+  "BreastStroke": {
+   "n": 28,
+   "acc": 0.89286
+  },
+  "BrushingTeeth": {
+   "n": 36,
+   "acc": 0.25
+  },
+  "CleanAndJerk": {
+   "n": 33,
+   "acc": 0.90909
+  },
+  "CliffDiving": {
+   "n": 39,
+   "acc": 0.94872
+  },
+  "CricketBowling": {
+   "n": 36,
+   "acc": 0.25
+  },
+  "CricketShot": {
+   "n": 49,
+   "acc": 0.28571
+  },
+  "CuttingInKitchen": {
+   "n": 33,
+   "acc": 0.93939
+  },
+  "Diving": {
+   "n": 45,
+   "acc": 1.0
+  },
+  "Drumming": {
+   "n": 45,
+   "acc": 1.0
+  },
+  "Fencing": {
+   "n": 34,
+   "acc": 0.82353
+  },
+  "FieldHockeyPenalty": {
+   "n": 40,
+   "acc": 0.925
+  },
+  "FloorGymnastics": {
+   "n": 36,
+   "acc": 0.80556
+  },
+  "FrisbeeCatch": {
+   "n": 37,
+   "acc": 0.89189
+  },
+  "FrontCrawl": {
+   "n": 37,
+   "acc": 0.40541
+  },
+  "GolfSwing": {
+   "n": 39,
+   "acc": 0.92308
+  },
+  "Haircut": {
+   "n": 33,
+   "acc": 0.87879
+  },
+  "HammerThrow": {
+   "n": 45,
+   "acc": 0.73333
+  },
+  "Hammering": {
+   "n": 33,
+   "acc": 0.42424
+  },
+  "HandStandPushups": {
+   "n": 28,
+   "acc": 0.57143
+  },
+  "HandstandWalking": {
+   "n": 34,
+   "acc": 0.5
+  },
+  "HeadMassage": {
+   "n": 41,
+   "acc": 1.0
+  },
+  "HighJump": {
+   "n": 37,
+   "acc": 0.67568
+  },
+  "HorseRace": {
+   "n": 35,
+   "acc": 0.97143
+  },
+  "HorseRiding": {
+   "n": 49,
+   "acc": 1.0
+  },
+  "HulaHoop": {
+   "n": 34,
+   "acc": 0.91176
+  },
+  "IceDancing": {
+   "n": 46,
+   "acc": 0.95652
+  },
+  "JavelinThrow": {
+   "n": 31,
+   "acc": 0.77419
+  },
+  "JugglingBalls": {
+   "n": 40,
+   "acc": 0.9
+  },
+  "JumpRope": {
+   "n": 38,
+   "acc": 0.36842
+  },
+  "JumpingJack": {
+   "n": 37,
+   "acc": 0.94595
+  },
+  "Kayaking": {
+   "n": 36,
+   "acc": 0.69444
+  },
+  "Knitting": {
+   "n": 34,
+   "acc": 1.0
+  },
+  "LongJump": {
+   "n": 39,
+   "acc": 0.79487
+  },
+  "Lunges": {
+   "n": 37,
+   "acc": 0.48649
+  },
+  "MilitaryParade": {
+   "n": 33,
+   "acc": 0.72727
+  },
+  "Mixing": {
+   "n": 45,
+   "acc": 0.8
+  },
+  "MoppingFloor": {
+   "n": 34,
+   "acc": 0.97059
+  },
+  "Nunchucks": {
+   "n": 35,
+   "acc": 0.31429
+  },
+  "ParallelBars": {
+   "n": 37,
+   "acc": 0.81081
+  },
+  "PizzaTossing": {
+   "n": 33,
+   "acc": 0.54545
+  },
+  "PlayingCello": {
+   "n": 44,
+   "acc": 0.93182
+  },
+  "PlayingDaf": {
+   "n": 41,
+   "acc": 0.95122
+  },
+  "PlayingDhol": {
+   "n": 49,
+   "acc": 0.65306
+  },
+  "PlayingFlute": {
+   "n": 48,
+   "acc": 0.60417
+  },
+  "PlayingGuitar": {
+   "n": 43,
+   "acc": 0.95349
+  },
+  "PlayingPiano": {
+   "n": 28,
+   "acc": 0.96429
+  },
+  "PlayingSitar": {
+   "n": 44,
+   "acc": 0.81818
+  },
+  "PlayingTabla": {
+   "n": 31,
+   "acc": 0.96774
+  },
+  "PlayingViolin": {
+   "n": 28,
+   "acc": 0.92857
+  },
+  "PoleVault": {
+   "n": 40,
+   "acc": 0.775
+  },
+  "PommelHorse": {
+   "n": 35,
+   "acc": 0.71429
+  },
+  "PullUps": {
+   "n": 28,
+   "acc": 0.85714
+  },
+  "Punch": {
+   "n": 39,
+   "acc": 0.87179
+  },
+  "PushUps": {
+   "n": 30,
+   "acc": 0.96667
+  },
+  "Rafting": {
+   "n": 28,
+   "acc": 0.89286
+  },
+  "RockClimbingIndoor": {
+   "n": 41,
+   "acc": 0.92683
+  },
+  "RopeClimbing": {
+   "n": 34,
+   "acc": 0.88235
+  },
+  "Rowing": {
+   "n": 36,
+   "acc": 0.77778
+  },
+  "SalsaSpin": {
+   "n": 43,
+   "acc": 0.7907
+  },
+  "ShavingBeard": {
+   "n": 43,
+   "acc": 0.83721
+  },
+  "Shotput": {
+   "n": 46,
+   "acc": 0.6087
+  },
+  "SkateBoarding": {
+   "n": 32,
+   "acc": 0.84375
+  },
+  "Skiing": {
+   "n": 40,
+   "acc": 0.8
+  },
+  "Skijet": {
+   "n": 28,
+   "acc": 1.0
+  },
+  "SkyDiving": {
+   "n": 31,
+   "acc": 0.96774
+  },
+  "SoccerJuggling": {
+   "n": 39,
+   "acc": 0.84615
+  },
+  "SoccerPenalty": {
+   "n": 41,
+   "acc": 0.82927
+  },
+  "StillRings": {
+   "n": 32,
+   "acc": 0.84375
+  },
+  "SumoWrestling": {
+   "n": 34,
+   "acc": 0.94118
+  },
+  "Surfing": {
+   "n": 33,
+   "acc": 0.9697
+  },
+  "Swing": {
+   "n": 42,
+   "acc": 0.83333
+  },
+  "TableTennisShot": {
+   "n": 39,
+   "acc": 0.92308
+  },
+  "TaiChi": {
+   "n": 28,
+   "acc": 0.96429
+  },
+  "TennisSwing": {
+   "n": 49,
+   "acc": 0.67347
+  },
+  "ThrowDiscus": {
+   "n": 38,
+   "acc": 0.84211
+  },
+  "TrampolineJumping": {
+   "n": 32,
+   "acc": 1.0
+  },
+  "Typing": {
+   "n": 43,
+   "acc": 1.0
+  },
+  "UnevenBars": {
+   "n": 28,
+   "acc": 0.85714
+  },
+  "VolleyballSpiking": {
+   "n": 35,
+   "acc": 0.97143
+  },
+  "WalkingWithDog": {
+   "n": 36,
+   "acc": 0.86111
+  },
+  "WallPushups": {
+   "n": 35,
+   "acc": 0.34286
+  },
+  "WritingOnBoard": {
+   "n": 45,
+   "acc": 0.95556
+  },
+  "YoYo": {
+   "n": 36,
+   "acc": 0.27778
+  }
+ },
+ "worst_15_classes": [
+  {
+   "class": "BrushingTeeth",
+   "acc": 0.25,
+   "n": 36
+  },
+  {
+   "class": "CricketBowling",
+   "acc": 0.25,
+   "n": 36
+  },
+  {
+   "class": "YoYo",
+   "acc": 0.27778,
+   "n": 36
+  },
+  {
+   "class": "CricketShot",
+   "acc": 0.28571,
+   "n": 49
+  },
+  {
+   "class": "Nunchucks",
+   "acc": 0.31429,
+   "n": 35
+  },
+  {
+   "class": "WallPushups",
+   "acc": 0.34286,
+   "n": 35
+  },
+  {
+   "class": "JumpRope",
+   "acc": 0.36842,
+   "n": 38
+  },
+  {
+   "class": "FrontCrawl",
+   "acc": 0.40541,
+   "n": 37
+  },
+  {
+   "class": "Hammering",
+   "acc": 0.42424,
+   "n": 33
+  },
+  {
+   "class": "Lunges",
+   "acc": 0.48649,
+   "n": 37
+  },
+  {
+   "class": "HandstandWalking",
+   "acc": 0.5,
+   "n": 34
+  },
+  {
+   "class": "PizzaTossing",
+   "acc": 0.54545,
+   "n": 33
+  },
+  {
+   "class": "HandStandPushups",
+   "acc": 0.57143,
+   "n": 28
+  },
+  {
+   "class": "BodyWeightSquats",
+   "acc": 0.6,
+   "n": 30
+  },
+  {
+   "class": "PlayingFlute",
+   "acc": 0.60417,
+   "n": 48
+  }
+ ],
+ "top_confusion_pairs": [
+  {
+   "true": "FrontCrawl",
+   "predicted": "BreastStroke",
+   "n": 17,
+   "rate_of_true_class": 0.45946
+  },
+  {
+   "true": "CricketShot",
+   "predicted": "CricketBowling",
+   "n": 14,
+   "rate_of_true_class": 0.28571
+  },
+  {
+   "true": "BrushingTeeth",
+   "predicted": "ShavingBeard",
+   "n": 13,
+   "rate_of_true_class": 0.36111
+  },
+  {
+   "true": "PlayingDhol",
+   "predicted": "PlayingTabla",
+   "n": 13,
+   "rate_of_true_class": 0.26531
+  },
+  {
+   "true": "BrushingTeeth",
+   "predicted": "ApplyLipstick",
+   "n": 12,
+   "rate_of_true_class": 0.33333
+  },
+  {
+   "true": "YoYo",
+   "predicted": "Nunchucks",
+   "n": 11,
+   "rate_of_true_class": 0.30556
+  },
+  {
+   "true": "PlayingFlute",
+   "predicted": "PlayingViolin",
+   "n": 11,
+   "rate_of_true_class": 0.22917
+  },
+  {
+   "true": "BoxingPunchingBag",
+   "predicted": "BoxingSpeedBag",
+   "n": 11,
+   "rate_of_true_class": 0.22449
+  },
+  {
+   "true": "MilitaryParade",
+   "predicted": "BandMarching",
+   "n": 9,
+   "rate_of_true_class": 0.27273
+  },
+  {
+   "true": "Kayaking",
+   "predicted": "Rafting",
+   "n": 9,
+   "rate_of_true_class": 0.25
+  },
+  {
+   "true": "HammerThrow",
+   "predicted": "ThrowDiscus",
+   "n": 9,
+   "rate_of_true_class": 0.2
+  },
+  {
+   "true": "BalanceBeam",
+   "predicted": "ParallelBars",
+   "n": 8,
+   "rate_of_true_class": 0.25806
+  },
+  {
+   "true": "Hammering",
+   "predicted": "BrushingTeeth",
+   "n": 8,
+   "rate_of_true_class": 0.24242
+  },
+  {
+   "true": "CricketBowling",
+   "predicted": "VolleyballSpiking",
+   "n": 7,
+   "rate_of_true_class": 0.19444
+  },
+  {
+   "true": "JumpRope",
+   "predicted": "PlayingDhol",
+   "n": 7,
+   "rate_of_true_class": 0.18421
+  },
+  {
+   "true": "SoccerPenalty",
+   "predicted": "FieldHockeyPenalty",
+   "n": 7,
+   "rate_of_true_class": 0.17073
+  },
+  {
+   "true": "Shotput",
+   "predicted": "ThrowDiscus",
+   "n": 7,
+   "rate_of_true_class": 0.15217
+  },
+  {
+   "true": "WallPushups",
+   "predicted": "BodyWeightSquats",
+   "n": 6,
+   "rate_of_true_class": 0.17143
+  },
+  {
+   "true": "Nunchucks",
+   "predicted": "TaiChi",
+   "n": 6,
+   "rate_of_true_class": 0.17143
+  },
+  {
+   "true": "Nunchucks",
+   "predicted": "Archery",
+   "n": 6,
+   "rate_of_true_class": 0.17143
+  }
+ ],
+ "what_this_does_not_show": [
+  "Run on CPU with one clip per video and a capped training set (see reductions_for_cpu_run); the Kaggle weekly GPU quota was exhausted. The test split is the full official one, but a 3-clip GPU run would score higher.",
+  "This is a linear probe on frozen features, not a fine-tuned video model; a fine-tuned r3d_18 scores higher and this number is not comparable to published UCF101 fine-tuning results.",
+  "Kinetics-400 and UCF101 overlap in content, so part of this accuracy is pretrained-label leakage rather than transfer.",
+  "The split is stated in split_source above. The dataset's own folders were NOT used: they shared 30 video files outright and split by clip rather than by UCF101 group, which leaks near-duplicate clips of the same scene across train and test.",
+  "One backbone on one dataset establishes nothing about model ranking."
+ ]
+}
