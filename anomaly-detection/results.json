@@ -1,0 +1,227 @@
+{
+ "task": "UCF-Crime surveillance anomaly detection, frame-level ROC AUC",
+ "method": "weakly-supervised MIL ranking (Sultani-style) on frozen ImageNet ResNet-50 frame features; 32 segments per video",
+ "backbone": "torchvision resnet50, ResNet50_Weights.IMAGENET1K_V2, frozen, 2048-d",
+ "supervision_at_train": "VIDEO-level labels only (anomalous vs normal), from the Train/ class folders",
+ "labels_at_test": "official UCF-Crime per-frame temporal annotations",
+ "annotation_source_url": "https://raw.githubusercontent.com/WaqasSultani/AnomalyDetectionCVPR2018/master/Temporal_Anomaly_Annotation.txt",
+ "frame_dataset": "Kaggle UCF-Crime extracted frames; frame index parsed from the filename, which is the original video frame number",
+ "frame_size": [
+  64,
+  64
+ ],
+ "n_train_videos": 1582,
+ "n_train_frames_embedded": 184538,
+ "max_train_frames_per_video": 128,
+ "n_test_videos": 283,
+ "n_test_frames_scored": 111134,
+ "n_test_anomalous_frames": 8520,
+ "anomalous_frame_fraction": 0.07666,
+ "train_test_video_overlap": 0,
+ "model_selection": {
+  "criterion": "video-level AUC on train videos held out from the fit",
+  "selected_iter": 3000,
+  "val_video_auc": 0.92064,
+  "note": "test frames were never used for selection"
+ },
+ "train_history": [
+  {
+   "iter": 100,
+   "loss": 0.94185,
+   "val_video_auc": 0.88364
+  },
+  {
+   "iter": 200,
+   "loss": 0.87928,
+   "val_video_auc": 0.88835
+  },
+  {
+   "iter": 300,
+   "loss": 0.78162,
+   "val_video_auc": 0.89484
+  },
+  {
+   "iter": 400,
+   "loss": 0.81641,
+   "val_video_auc": 0.89695
+  },
+  {
+   "iter": 500,
+   "loss": 0.76342,
+   "val_video_auc": 0.89955
+  },
+  {
+   "iter": 600,
+   "loss": 0.81436,
+   "val_video_auc": 0.9023
+  },
+  {
+   "iter": 700,
+   "loss": 0.75359,
+   "val_video_auc": 0.90474
+  },
+  {
+   "iter": 800,
+   "loss": 0.72073,
+   "val_video_auc": 0.90766
+  },
+  {
+   "iter": 900,
+   "loss": 0.77524,
+   "val_video_auc": 0.90928
+  },
+  {
+   "iter": 1000,
+   "loss": 0.75246,
+   "val_video_auc": 0.91204
+  },
+  {
+   "iter": 1100,
+   "loss": 0.68814,
+   "val_video_auc": 0.91302
+  },
+  {
+   "iter": 1200,
+   "loss": 0.73247,
+   "val_video_auc": 0.91366
+  },
+  {
+   "iter": 1300,
+   "loss": 0.58894,
+   "val_video_auc": 0.91431
+  },
+  {
+   "iter": 1400,
+   "loss": 0.54835,
+   "val_video_auc": 0.91464
+  },
+  {
+   "iter": 1500,
+   "loss": 0.68529,
+   "val_video_auc": 0.91496
+  },
+  {
+   "iter": 1600,
+   "loss": 0.62743,
+   "val_video_auc": 0.9148
+  },
+  {
+   "iter": 1700,
+   "loss": 0.50488,
+   "val_video_auc": 0.9161
+  },
+  {
+   "iter": 1800,
+   "loss": 0.72558,
+   "val_video_auc": 0.91756
+  },
+  {
+   "iter": 1900,
+   "loss": 0.59586,
+   "val_video_auc": 0.91821
+  },
+  {
+   "iter": 2000,
+   "loss": 0.52868,
+   "val_video_auc": 0.91788
+  },
+  {
+   "iter": 2100,
+   "loss": 0.58564,
+   "val_video_auc": 0.91853
+  },
+  {
+   "iter": 2200,
+   "loss": 0.64369,
+   "val_video_auc": 0.91918
+  },
+  {
+   "iter": 2300,
+   "loss": 0.53938,
+   "val_video_auc": 0.91934
+  },
+  {
+   "iter": 2400,
+   "loss": 0.64386,
+   "val_video_auc": 0.91951
+  },
+  {
+   "iter": 2500,
+   "loss": 0.63089,
+   "val_video_auc": 0.91886
+  },
+  {
+   "iter": 2600,
+   "loss": 0.51392,
+   "val_video_auc": 0.91951
+  },
+  {
+   "iter": 2700,
+   "loss": 0.61116,
+   "val_video_auc": 0.91983
+  },
+  {
+   "iter": 2800,
+   "loss": 0.5756,
+   "val_video_auc": 0.92016
+  },
+  {
+   "iter": 2900,
+   "loss": 0.4599,
+   "val_video_auc": 0.92048
+  },
+  {
+   "iter": 3000,
+   "loss": 0.44211,
+   "val_video_auc": 0.92064
+  }
+ ],
+ "held_out_frame_level_auc": 0.76329,
+ "held_out_frame_level_auc_per_frame_scoring": 0.7574,
+ "operating_points": {
+  "recall_0.5": {
+   "fpr": 0.1543,
+   "actual_tpr": 0.50023,
+   "threshold": 0.37777
+  },
+  "recall_0.8": {
+   "fpr": 0.43754,
+   "actual_tpr": 0.8,
+   "threshold": 0.07476
+  },
+  "recall_0.9": {
+   "fpr": 0.53227,
+   "actual_tpr": 0.90035,
+   "threshold": 0.03977
+  }
+ },
+ "per_class_frame_auc": {
+  "Arrest": 0.6761,
+  "Arson": 0.92937,
+  "Assault": 0.95166,
+  "Burglary": 0.8931,
+  "Explosion": 0.85644,
+  "Fighting": 0.75746,
+  "RoadAccidents": 0.7656,
+  "Robbery": 0.73109,
+  "Shooting": 0.85734,
+  "Shoplifting": 0.81154,
+  "Stealing": 0.90544,
+  "Vandalism": 0.90262
+ },
+ "naive_baseline_frame_level_auc": 0.73574,
+ "naive_baseline_definition": "logistic regression trained as if every segment of an anomalous video were anomalous - the mistake weak supervision exists to avoid",
+ "mil_minus_naive": 0.02755,
+ "this_is_not_a_theft_detector": [
+  "This is a benchmark measurement, not a deployable system, and must not be pointed at a real person or place.",
+  "UCF-Crime videos were selected and trimmed by annotators; its normal videos are not a sample of real surveillance footage, so the AUC does not transfer to a live camera.",
+  "AUC is a ranking summary over a pooled frame set. The operating-point table is the honest view: see the false-positive rate required to reach each recall.",
+  "An anomaly score is not a crime classification. The per-class AUCs above are computed from the dataset's own class folders and say nothing about intent, legality or identity.",
+  "No face, person or identity is detected, tracked or recognised anywhere in this notebook."
+ ],
+ "what_this_does_not_show": [
+  "One feature extractor and one MIL head on one benchmark. It establishes no ranking against published UCF-Crime methods, which use different features (C3D/I3D) and the full frame rate.",
+  "The frames in this Kaggle copy are decimated and small, so this number is not comparable to papers that use every frame at full resolution.",
+  "The naive baseline comparison is a comparison of two things trained here, under identical features and splits; that part is a controlled contrast."
+ ]
+}
