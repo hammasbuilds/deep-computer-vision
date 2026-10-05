@@ -1,0 +1,133 @@
+{
+ "task": "MVTec AD image-level anomaly detection, no training",
+ "method": "frozen ImageNet ResNet-50 layer2+layer3 patch features, memory bank of defect-free train patches, score = max 1-NN distance",
+ "control": "identical pipeline on 32x32 raw pixels instead of network features",
+ "bank_cap_patches": 8000,
+ "device": "cpu",
+ "bar_mean_auroc": 0.9,
+ "mean_auroc_resnet50": 0.9379409882208926,
+ "mean_auroc_raw_pixels": 0.6699916766683329,
+ "feature_advantage": 0.26794931155255963,
+ "per_category": [
+  {
+   "category": "bottle",
+   "n_train_good": 209,
+   "n_test": 83,
+   "n_anomalous": 63,
+   "auroc_resnet50": 1.0,
+   "auroc_raw_pixels": 0.6746031746031746
+  },
+  {
+   "category": "cable",
+   "n_train_good": 224,
+   "n_test": 150,
+   "n_anomalous": 92,
+   "auroc_resnet50": 0.9413418290854573,
+   "auroc_raw_pixels": 0.580491004497751
+  },
+  {
+   "category": "capsule",
+   "n_train_good": 219,
+   "n_test": 132,
+   "n_anomalous": 109,
+   "auroc_resnet50": 0.8803350618268848,
+   "auroc_raw_pixels": 0.5297167929796569
+  },
+  {
+   "category": "carpet",
+   "n_train_good": 280,
+   "n_test": 117,
+   "n_anomalous": 89,
+   "auroc_resnet50": 0.9975922953451044,
+   "auroc_raw_pixels": 0.5096308186195827
+  },
+  {
+   "category": "grid",
+   "n_train_good": 264,
+   "n_test": 78,
+   "n_anomalous": 57,
+   "auroc_resnet50": 0.8370927318295739,
+   "auroc_raw_pixels": 0.7936507936507936
+  },
+  {
+   "category": "hazelnut",
+   "n_train_good": 391,
+   "n_test": 110,
+   "n_anomalous": 70,
+   "auroc_resnet50": 1.0,
+   "auroc_raw_pixels": 0.7164285714285714
+  },
+  {
+   "category": "leather",
+   "n_train_good": 245,
+   "n_test": 124,
+   "n_anomalous": 92,
+   "auroc_resnet50": 1.0,
+   "auroc_raw_pixels": 0.9808084239130436
+  },
+  {
+   "category": "metal_nut",
+   "n_train_good": 220,
+   "n_test": 115,
+   "n_anomalous": 93,
+   "auroc_resnet50": 0.987781036168133,
+   "auroc_raw_pixels": 0.4039589442815249
+  },
+  {
+   "category": "pill",
+   "n_train_good": 267,
+   "n_test": 167,
+   "n_anomalous": 141,
+   "auroc_resnet50": 0.9258046917621385,
+   "auroc_raw_pixels": 0.6721222040370977
+  },
+  {
+   "category": "screw",
+   "n_train_good": 320,
+   "n_test": 160,
+   "n_anomalous": 119,
+   "auroc_resnet50": 0.6892805902848944,
+   "auroc_raw_pixels": 0.49426111908177905
+  },
+  {
+   "category": "tile",
+   "n_train_good": 230,
+   "n_test": 117,
+   "n_anomalous": 84,
+   "auroc_resnet50": 0.9963924963924964,
+   "auroc_raw_pixels": 0.8605699855699858
+  },
+  {
+   "category": "toothbrush",
+   "n_train_good": 60,
+   "n_test": 42,
+   "n_anomalous": 30,
+   "auroc_resnet50": 0.9027777777777778,
+   "auroc_raw_pixels": 0.8486111111111112
+  },
+  {
+   "category": "transistor",
+   "n_train_good": 213,
+   "n_test": 100,
+   "n_anomalous": 40,
+   "auroc_resnet50": 0.9733333333333334,
+   "auroc_raw_pixels": 0.5404166666666668
+  },
+  {
+   "category": "wood",
+   "n_train_good": 247,
+   "n_test": 79,
+   "n_anomalous": 60,
+   "auroc_resnet50": 0.9859649122807017,
+   "auroc_raw_pixels": 0.9447368421052632
+  },
+  {
+   "category": "zipper",
+   "n_train_good": 240,
+   "n_test": 151,
+   "n_anomalous": 119,
+   "auroc_resnet50": 0.9514180672268908,
+   "auroc_raw_pixels": 0.49986869747899165
+  }
+ ]
+}
