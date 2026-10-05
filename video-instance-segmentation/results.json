@@ -1,0 +1,1009 @@
+{
+ "task": "video instance segmentation on DAVIS 2017, 480p",
+ "model": "torchvision maskrcnn_resnet50_fpn, MaskRCNN_ResNet50_FPN_Weights.COCO_V1, as published, no fine-tuning, run independently per frame",
+ "model_published_coco_metrics": {
+  "COCO-val2017": {
+   "box_map": 37.9,
+   "mask_map": 34.6
+  }
+ },
+ "split": "official DAVIS 2017 ImageSets/2017/val.txt",
+ "n_sequences": 30,
+ "sequences": [
+  "bike-packing",
+  "blackswan",
+  "bmx-trees",
+  "breakdance",
+  "camel",
+  "car-roundabout",
+  "car-shadow",
+  "cows",
+  "dance-twirl",
+  "dog",
+  "dogs-jump",
+  "drift-chicane",
+  "drift-straight",
+  "goat",
+  "gold-fish",
+  "horsejump-high",
+  "india",
+  "judo",
+  "kite-surf",
+  "lab-coat",
+  "libby",
+  "loading",
+  "mbike-trick",
+  "motocross-jump",
+  "paragliding-launch",
+  "parkour",
+  "pigs",
+  "scooter-black",
+  "shooting",
+  "soapbox"
+ ],
+ "n_frames_scored": 1999,
+ "n_gt_instance_frames": 3929,
+ "n_predicted_masks": 17632,
+ "score_threshold": 0.5,
+ "mask_binarisation_threshold": 0.5,
+ "matching": "class-agnostic; a GT instance is matched to the predicted mask of highest mask IoU regardless of COCO class",
+ "per_frame_quality": {
+  "J_mean_over_sequences": 0.72139,
+  "mean_iou_over_all_gt_instance_frames": 0.66446,
+  "mean_iou_over_all_gt_objects": 0.65242,
+  "fraction_instance_frames_iou_ge_0.5": 0.77017,
+  "fraction_instance_frames_any_overlap": 0.98371,
+  "mask_AP_class_agnostic": {
+   "AP": 0.22609,
+   "AP50": 0.39496,
+   "AP75": 0.24354,
+   "AP_small": 0.00084,
+   "AP_medium": 0.1576,
+   "AP_large": 0.33383,
+   "AR1": 0.2592,
+   "AR10": 0.50069,
+   "AR100": 0.50975,
+   "AR_small": 0.09337,
+   "AR_medium": 0.38414,
+   "AR_large": 0.5869
+  }
+ },
+ "coverage": {
+  "definition": "a GT object counts as COVERED if the mean over its frames of its best predicted-mask IoU reaches 0.50. Coverage separates honest COCO class mismatch (the object is not a COCO category, so nothing detects it) from poor segmentation of objects that WERE detected.",
+  "coverage_threshold_mean_iou": 0.5,
+  "n_gt_objects": 61,
+  "n_objects_covered": 49,
+  "coverage": 0.80328,
+  "matched_object_mean_iou": 0.76111,
+  "uncovered_object_mean_iou": 0.20864,
+  "uncovered_objects": [
+   {
+    "sequence": "bmx-trees",
+    "instance": 1,
+    "mean_iou": 0.34593
+   },
+   {
+    "sequence": "gold-fish",
+    "instance": 3,
+    "mean_iou": 0.48141
+   },
+   {
+    "sequence": "gold-fish",
+    "instance": 5,
+    "mean_iou": 0.13152
+   },
+   {
+    "sequence": "kite-surf",
+    "instance": 1,
+    "mean_iou": 0.12367
+   },
+   {
+    "sequence": "kite-surf",
+    "instance": 2,
+    "mean_iou": 0.24468
+   },
+   {
+    "sequence": "lab-coat",
+    "instance": 1,
+    "mean_iou": 0.18894
+   },
+   {
+    "sequence": "lab-coat",
+    "instance": 2,
+    "mean_iou": 0.20497
+   },
+   {
+    "sequence": "loading",
+    "instance": 2,
+    "mean_iou": 0.28458
+   },
+   {
+    "sequence": "paragliding-launch",
+    "instance": 2,
+    "mean_iou": 0.33668
+   },
+   {
+    "sequence": "paragliding-launch",
+    "instance": 3,
+    "mean_iou": 0.00297
+   },
+   {
+    "sequence": "shooting",
+    "instance": 1,
+    "mean_iou": 0.08752
+   },
+   {
+    "sequence": "shooting",
+    "instance": 3,
+    "mean_iou": 0.07081
+   }
+  ]
+ },
+ "temporal_consistency": {
+  "definition": {
+   "identity_jump_rate": "over consecutive frame pairs where the GT object is detected (IoU>=0.5) in both frames, the fraction where the predicted mask covering it in frame t and the one covering it in frame t+1 are NOT linked to each other by Hungarian IoU matching at IoU>=0.5 - the object's mask identity jumped",
+   "presence_flicker_rate": "fraction of consecutive GT-object pairs where the object is detected in one frame but not the other",
+   "pred_frame_to_frame_iou": "mean IoU between the predicted masks covering the same GT object in frames t and t+1",
+   "gt_frame_to_frame_iou": "the same quantity for the GT masks - the motion baseline, so the gap is model instability and not object movement"
+  },
+  "link_iou_threshold": 0.5,
+  "detected_iou_threshold": 0.5,
+  "consecutive_gt_object_pairs": 3862,
+  "pairs_detected_in_both_frames": 2862,
+  "identity_jump_rate": 0.10342,
+  "presence_flicker_rate": 0.06111,
+  "pred_frame_to_frame_iou": 0.78932,
+  "gt_frame_to_frame_iou": 0.78441,
+  "stability_gap_gt_minus_pred": -0.00491
+ },
+ "per_sequence": {
+  "bike-packing": {
+   "n_frames": 69,
+   "n_instances": 2,
+   "mean_iou": 0.58037,
+   "n_objects_covered": 2,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.51149,
+     "frac_frames_iou_ge_0.5": 0.47826,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.64925,
+     "frac_frames_iou_ge_0.5": 0.78261,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "blackswan": {
+   "n_frames": 50,
+   "n_instances": 1,
+   "mean_iou": 0.87191,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.87191,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "bmx-trees": {
+   "n_frames": 80,
+   "n_instances": 2,
+   "mean_iou": 0.51208,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.34593,
+     "frac_frames_iou_ge_0.5": 0.025,
+     "frac_frames_any_overlap": 0.975,
+     "covered": false
+    },
+    "2": {
+     "mean_iou": 0.67823,
+     "frac_frames_iou_ge_0.5": 0.85,
+     "frac_frames_any_overlap": 0.9875,
+     "covered": true
+    }
+   }
+  },
+  "breakdance": {
+   "n_frames": 84,
+   "n_instances": 1,
+   "mean_iou": 0.66353,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.66353,
+     "frac_frames_iou_ge_0.5": 0.83333,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "camel": {
+   "n_frames": 90,
+   "n_instances": 1,
+   "mean_iou": 0.88107,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.88107,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "car-roundabout": {
+   "n_frames": 75,
+   "n_instances": 1,
+   "mean_iou": 0.95477,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.95477,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "car-shadow": {
+   "n_frames": 40,
+   "n_instances": 1,
+   "mean_iou": 0.95214,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.95214,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "cows": {
+   "n_frames": 104,
+   "n_instances": 1,
+   "mean_iou": 0.88852,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.88852,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "dance-twirl": {
+   "n_frames": 90,
+   "n_instances": 1,
+   "mean_iou": 0.77971,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.77971,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "dog": {
+   "n_frames": 60,
+   "n_instances": 1,
+   "mean_iou": 0.88607,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.88607,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "dogs-jump": {
+   "n_frames": 66,
+   "n_instances": 3,
+   "mean_iou": 0.87421,
+   "n_objects_covered": 3,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.84683,
+     "frac_frames_iou_ge_0.5": 0.92424,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.90344,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "3": {
+     "mean_iou": 0.87236,
+     "frac_frames_iou_ge_0.5": 0.98485,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "drift-chicane": {
+   "n_frames": 52,
+   "n_instances": 1,
+   "mean_iou": 0.89135,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.89135,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "drift-straight": {
+   "n_frames": 50,
+   "n_instances": 1,
+   "mean_iou": 0.92286,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.92286,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "goat": {
+   "n_frames": 90,
+   "n_instances": 1,
+   "mean_iou": 0.87809,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.87809,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "gold-fish": {
+   "n_frames": 78,
+   "n_instances": 5,
+   "mean_iou": 0.48123,
+   "n_objects_covered": 3,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.54087,
+     "frac_frames_iou_ge_0.5": 0.61538,
+     "frac_frames_any_overlap": 0.98718,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.56826,
+     "frac_frames_iou_ge_0.5": 0.62821,
+     "frac_frames_any_overlap": 0.96154,
+     "covered": true
+    },
+    "3": {
+     "mean_iou": 0.48141,
+     "frac_frames_iou_ge_0.5": 0.52564,
+     "frac_frames_any_overlap": 1.0,
+     "covered": false
+    },
+    "4": {
+     "mean_iou": 0.68411,
+     "frac_frames_iou_ge_0.5": 0.96154,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "5": {
+     "mean_iou": 0.13152,
+     "frac_frames_iou_ge_0.5": 0.10256,
+     "frac_frames_any_overlap": 0.73077,
+     "covered": false
+    }
+   }
+  },
+  "horsejump-high": {
+   "n_frames": 50,
+   "n_instances": 2,
+   "mean_iou": 0.74469,
+   "n_objects_covered": 2,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.74279,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.74658,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "india": {
+   "n_frames": 81,
+   "n_instances": 3,
+   "mean_iou": 0.69307,
+   "n_objects_covered": 3,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.78742,
+     "frac_frames_iou_ge_0.5": 0.8871,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.58839,
+     "frac_frames_iou_ge_0.5": 0.70149,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "3": {
+     "mean_iou": 0.70341,
+     "frac_frames_iou_ge_0.5": 0.83099,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "judo": {
+   "n_frames": 34,
+   "n_instances": 2,
+   "mean_iou": 0.62393,
+   "n_objects_covered": 2,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.71314,
+     "frac_frames_iou_ge_0.5": 0.97059,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.53472,
+     "frac_frames_iou_ge_0.5": 0.5,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "kite-surf": {
+   "n_frames": 50,
+   "n_instances": 3,
+   "mean_iou": 0.33922,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.12367,
+     "frac_frames_iou_ge_0.5": 0.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": false
+    },
+    "2": {
+     "mean_iou": 0.24468,
+     "frac_frames_iou_ge_0.5": 0.34211,
+     "frac_frames_any_overlap": 0.52632,
+     "covered": false
+    },
+    "3": {
+     "mean_iou": 0.64932,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "lab-coat": {
+   "n_frames": 47,
+   "n_instances": 5,
+   "mean_iou": 0.54926,
+   "n_objects_covered": 3,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.18894,
+     "frac_frames_iou_ge_0.5": 0.23404,
+     "frac_frames_any_overlap": 1.0,
+     "covered": false
+    },
+    "2": {
+     "mean_iou": 0.20497,
+     "frac_frames_iou_ge_0.5": 0.29787,
+     "frac_frames_any_overlap": 1.0,
+     "covered": false
+    },
+    "3": {
+     "mean_iou": 0.79286,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "4": {
+     "mean_iou": 0.73698,
+     "frac_frames_iou_ge_0.5": 0.93617,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "5": {
+     "mean_iou": 0.82256,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "libby": {
+   "n_frames": 49,
+   "n_instances": 1,
+   "mean_iou": 0.77393,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.77393,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "loading": {
+   "n_frames": 50,
+   "n_instances": 3,
+   "mean_iou": 0.66573,
+   "n_objects_covered": 2,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.91801,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.28458,
+     "frac_frames_iou_ge_0.5": 0.34,
+     "frac_frames_any_overlap": 1.0,
+     "covered": false
+    },
+    "3": {
+     "mean_iou": 0.79459,
+     "frac_frames_iou_ge_0.5": 0.9,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "mbike-trick": {
+   "n_frames": 79,
+   "n_instances": 2,
+   "mean_iou": 0.79864,
+   "n_objects_covered": 2,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.79125,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.80602,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "motocross-jump": {
+   "n_frames": 40,
+   "n_instances": 2,
+   "mean_iou": 0.68009,
+   "n_objects_covered": 2,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.68504,
+     "frac_frames_iou_ge_0.5": 0.85,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.67513,
+     "frac_frames_iou_ge_0.5": 0.85,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "paragliding-launch": {
+   "n_frames": 80,
+   "n_instances": 3,
+   "mean_iou": 0.31013,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.59073,
+     "frac_frames_iou_ge_0.5": 0.8375,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.33668,
+     "frac_frames_iou_ge_0.5": 0.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": false
+    },
+    "3": {
+     "mean_iou": 0.00297,
+     "frac_frames_iou_ge_0.5": 0.0,
+     "frac_frames_any_overlap": 0.975,
+     "covered": false
+    }
+   }
+  },
+  "parkour": {
+   "n_frames": 100,
+   "n_instances": 1,
+   "mean_iou": 0.88206,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.88206,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "pigs": {
+   "n_frames": 79,
+   "n_instances": 3,
+   "mean_iou": 0.75722,
+   "n_objects_covered": 3,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.86588,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.52226,
+     "frac_frames_iou_ge_0.5": 0.56962,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "3": {
+     "mean_iou": 0.88354,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "scooter-black": {
+   "n_frames": 43,
+   "n_instances": 2,
+   "mean_iou": 0.79627,
+   "n_objects_covered": 2,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.76537,
+     "frac_frames_iou_ge_0.5": 0.97674,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.82717,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  },
+  "shooting": {
+   "n_frames": 40,
+   "n_instances": 3,
+   "mean_iou": 0.27453,
+   "n_objects_covered": 1,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.08752,
+     "frac_frames_iou_ge_0.5": 0.0,
+     "frac_frames_any_overlap": 0.675,
+     "covered": false
+    },
+    "2": {
+     "mean_iou": 0.66527,
+     "frac_frames_iou_ge_0.5": 0.775,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "3": {
+     "mean_iou": 0.07081,
+     "frac_frames_iou_ge_0.5": 0.025,
+     "frac_frames_any_overlap": 0.925,
+     "covered": false
+    }
+   }
+  },
+  "soapbox": {
+   "n_frames": 99,
+   "n_instances": 3,
+   "mean_iou": 0.73498,
+   "n_objects_covered": 3,
+   "per_instance": {
+    "1": {
+     "mean_iou": 0.61344,
+     "frac_frames_iou_ge_0.5": 0.76768,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "2": {
+     "mean_iou": 0.78271,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    },
+    "3": {
+     "mean_iou": 0.8088,
+     "frac_frames_iou_ge_0.5": 1.0,
+     "frac_frames_any_overlap": 1.0,
+     "covered": true
+    }
+   }
+  }
+ },
+ "per_sequence_temporal": {
+  "bike-packing": {
+   "consecutive_pairs_both_detected": 77,
+   "identity_jump_rate": 0.07792,
+   "presence_flicker_rate": 0.11765,
+   "pred_frame_to_frame_iou": 0.80497,
+   "gt_frame_to_frame_iou": 0.79805
+  },
+  "blackswan": {
+   "consecutive_pairs_both_detected": 49,
+   "identity_jump_rate": 0.12245,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.88653,
+   "gt_frame_to_frame_iou": 0.94687
+  },
+  "bmx-trees": {
+   "consecutive_pairs_both_detected": 62,
+   "identity_jump_rate": 0.16129,
+   "presence_flicker_rate": 0.08861,
+   "pred_frame_to_frame_iou": 0.64312,
+   "gt_frame_to_frame_iou": 0.60418
+  },
+  "breakdance": {
+   "consecutive_pairs_both_detected": 61,
+   "identity_jump_rate": 0.13115,
+   "presence_flicker_rate": 0.19277,
+   "pred_frame_to_frame_iou": 0.66971,
+   "gt_frame_to_frame_iou": 0.65277
+  },
+  "camel": {
+   "consecutive_pairs_both_detected": 89,
+   "identity_jump_rate": 0.07865,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.91416,
+   "gt_frame_to_frame_iou": 0.91308
+  },
+  "car-roundabout": {
+   "consecutive_pairs_both_detected": 74,
+   "identity_jump_rate": 0.0,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.96678,
+   "gt_frame_to_frame_iou": 0.9743
+  },
+  "car-shadow": {
+   "consecutive_pairs_both_detected": 39,
+   "identity_jump_rate": 0.0,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.94522,
+   "gt_frame_to_frame_iou": 0.93957
+  },
+  "cows": {
+   "consecutive_pairs_both_detected": 103,
+   "identity_jump_rate": 0.0,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.93266,
+   "gt_frame_to_frame_iou": 0.92601
+  },
+  "dance-twirl": {
+   "consecutive_pairs_both_detected": 89,
+   "identity_jump_rate": 0.03371,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.77842,
+   "gt_frame_to_frame_iou": 0.76185
+  },
+  "dog": {
+   "consecutive_pairs_both_detected": 59,
+   "identity_jump_rate": 0.0,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.80554,
+   "gt_frame_to_frame_iou": 0.78235
+  },
+  "dogs-jump": {
+   "consecutive_pairs_both_detected": 186,
+   "identity_jump_rate": 0.09677,
+   "presence_flicker_rate": 0.03077,
+   "pred_frame_to_frame_iou": 0.77765,
+   "gt_frame_to_frame_iou": 0.76697
+  },
+  "drift-chicane": {
+   "consecutive_pairs_both_detected": 51,
+   "identity_jump_rate": 0.03922,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.78895,
+   "gt_frame_to_frame_iou": 0.78101
+  },
+  "drift-straight": {
+   "consecutive_pairs_both_detected": 49,
+   "identity_jump_rate": 0.02041,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.77482,
+   "gt_frame_to_frame_iou": 0.77253
+  },
+  "goat": {
+   "consecutive_pairs_both_detected": 89,
+   "identity_jump_rate": 0.34831,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.82675,
+   "gt_frame_to_frame_iou": 0.79809
+  },
+  "gold-fish": {
+   "consecutive_pairs_both_detected": 182,
+   "identity_jump_rate": 0.15385,
+   "presence_flicker_rate": 0.18961,
+   "pred_frame_to_frame_iou": 0.78564,
+   "gt_frame_to_frame_iou": 0.87713
+  },
+  "horsejump-high": {
+   "consecutive_pairs_both_detected": 98,
+   "identity_jump_rate": 0.06122,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.68591,
+   "gt_frame_to_frame_iou": 0.62574
+  },
+  "india": {
+   "consecutive_pairs_both_detected": 153,
+   "identity_jump_rate": 0.03922,
+   "presence_flicker_rate": 0.06186,
+   "pred_frame_to_frame_iou": 0.85333,
+   "gt_frame_to_frame_iou": 0.85669
+  },
+  "judo": {
+   "consecutive_pairs_both_detected": 44,
+   "identity_jump_rate": 0.06818,
+   "presence_flicker_rate": 0.15152,
+   "pred_frame_to_frame_iou": 0.80881,
+   "gt_frame_to_frame_iou": 0.8238
+  },
+  "kite-surf": {
+   "consecutive_pairs_both_detected": 58,
+   "identity_jump_rate": 0.48276,
+   "presence_flicker_rate": 0.05303,
+   "pred_frame_to_frame_iou": 0.54877,
+   "gt_frame_to_frame_iou": 0.45994
+  },
+  "lab-coat": {
+   "consecutive_pairs_both_detected": 150,
+   "identity_jump_rate": 0.13333,
+   "presence_flicker_rate": 0.07826,
+   "pred_frame_to_frame_iou": 0.71578,
+   "gt_frame_to_frame_iou": 0.78203
+  },
+  "libby": {
+   "consecutive_pairs_both_detected": 48,
+   "identity_jump_rate": 0.3125,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.59135,
+   "gt_frame_to_frame_iou": 0.54702
+  },
+  "loading": {
+   "consecutive_pairs_both_detected": 100,
+   "identity_jump_rate": 0.11,
+   "presence_flicker_rate": 0.13605,
+   "pred_frame_to_frame_iou": 0.79913,
+   "gt_frame_to_frame_iou": 0.82059
+  },
+  "mbike-trick": {
+   "consecutive_pairs_both_detected": 156,
+   "identity_jump_rate": 0.01282,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.79764,
+   "gt_frame_to_frame_iou": 0.75482
+  },
+  "motocross-jump": {
+   "consecutive_pairs_both_detected": 61,
+   "identity_jump_rate": 0.2459,
+   "presence_flicker_rate": 0.15385,
+   "pred_frame_to_frame_iou": 0.61731,
+   "gt_frame_to_frame_iou": 0.56531
+  },
+  "paragliding-launch": {
+   "consecutive_pairs_both_detected": 65,
+   "identity_jump_rate": 0.12308,
+   "presence_flicker_rate": 0.00844,
+   "pred_frame_to_frame_iou": 0.81978,
+   "gt_frame_to_frame_iou": 0.84614
+  },
+  "parkour": {
+   "consecutive_pairs_both_detected": 99,
+   "identity_jump_rate": 0.0303,
+   "presence_flicker_rate": 0.0,
+   "pred_frame_to_frame_iou": 0.72553,
+   "gt_frame_to_frame_iou": 0.69794
+  },
+  "pigs": {
+   "consecutive_pairs_both_detected": 198,
+   "identity_jump_rate": 0.22727,
+   "presence_flicker_rate": 0.01709,
+   "pred_frame_to_frame_iou": 0.89436,
+   "gt_frame_to_frame_iou": 0.90042
+  },
+  "scooter-black": {
+   "consecutive_pairs_both_detected": 83,
+   "identity_jump_rate": 0.07229,
+   "presence_flicker_rate": 0.0119,
+   "pred_frame_to_frame_iou": 0.71177,
+   "gt_frame_to_frame_iou": 0.67708
+  },
+  "shooting": {
+   "consecutive_pairs_both_detected": 28,
+   "identity_jump_rate": 0.14286,
+   "presence_flicker_rate": 0.05983,
+   "pred_frame_to_frame_iou": 0.74392,
+   "gt_frame_to_frame_iou": 0.83546
+  },
+  "soapbox": {
+   "consecutive_pairs_both_detected": 262,
+   "identity_jump_rate": 0.01527,
+   "presence_flicker_rate": 0.06122,
+   "pred_frame_to_frame_iou": 0.78541,
+   "gt_frame_to_frame_iou": 0.74177
+  }
+ },
+ "coco_labels_on_well_matched_davis_objects": {
+  "person": 1439,
+  "dog": 279,
+  "cow": 265,
+  "bird": 263,
+  "car": 215,
+  "horse": 171,
+  "motorcycle": 151,
+  "skateboard": 49,
+  "bicycle": 40,
+  "sheep": 36,
+  "bench": 27,
+  "elephant": 17,
+  "cell phone": 16,
+  "surfboard": 13,
+  "book": 13,
+  "backpack": 9,
+  "apple": 6,
+  "tennis racket": 5,
+  "laptop": 4,
+  "baseball bat": 3
+ },
+ "what_this_does_not_show": [
+  "Mask R-CNN is not a video model and has no tracking component; these temporal numbers describe per-frame detection re-run independently, which is exactly the baseline a video method has to beat.",
+  "DAVIS objects are class-agnostic while Mask R-CNN predicts COCO classes, so objects outside the 80 COCO classes can only be matched by accident. The label table shows what it actually assigned.",
+  "One model on one dataset. Nothing here ranks this model against another.",
+  "Coverage and matched-object IoU must be read together. Matched-object IoU alone flatters the model by excluding everything it never found; coverage alone says nothing about mask quality. The overall figures over all GT objects are reported too.",
+  "J is computed on annotated frames of the chosen split at a fixed score threshold of 0.5; a different threshold moves both the IoU and the flicker rate.",
+  "The identity jump rate is a property of this specific linking rule (Hungarian, IoU>=0.5) and would change under a different association threshold."
+ ]
+}
