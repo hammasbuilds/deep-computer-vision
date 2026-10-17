@@ -31,7 +31,7 @@ notebooks that produced them, rather than demo screenshots.
 - Scores published weights on official held-out splits (COCO val2017, UCF101
   split 1, DAVIS 2017 val, UCF-Crime test) with leakage checks between splits.
 - Adds a control to each measurement where one exists: raw pixels against
-  learned features, the model before and after fine-tuning, a naive
+  learned features, the published pose score against the measured one, a naive
   whole-video label against multiple-instance learning.
 - Keeps every quoted number in the project's `results.json`.
 
@@ -43,11 +43,10 @@ parts:
 
 ![Defect localisation on four MVTec AD parts](docs/figures/defect_localisation.png)
 
-**Product matting** - held-out test images; the matte from the published U2-Net
-weights against the fine-tuned model, each cut out over a checkerboard with its IoU
-and MAE:
+**Product matting** - held-out test images: the fine-tuned U2-Net's matte (IoU and
+MAE against the ground truth) and the cut-out over a checkerboard:
 
-![Product matting before and after fine-tuning](docs/figures/product_matting.png)
+![Product matting on four test images](docs/figures/product_matting.png)
 
 **Face anonymisation** - CenterFace at detection threshold 0.2 on a crowded street:
 
@@ -60,9 +59,8 @@ The two figures above are built from the committed `samples/` folders by
 
 - **Defect localisation:** pixel AP 0.9839 train / 0.9565 val / 0.9583 test,
   against 0.155 at epoch 0. Test pooled IoU 0.8033, per-image IoU 0.6232.
-- **Product matting:** IoU 0.9903 train / 0.9625 val / 0.9611 test. The published
-  U2-Net weights already scored 0.9621 validation IoU before fine-tuning, so the
-  fine-tune changed the held-out score very little.
+- **Product matting:** IoU 0.9903 train / 0.9625 val / 0.9611 test, MAE 0.0104 on
+  test.
 - **Industrial anomaly, no training:** frozen ResNet-50 features 0.9379 mean image
   AUROC against 0.6700 for raw pixels in the same pipeline; the features are worth
   +0.3292 AUROC on objects and +0.1455 on textures.

@@ -89,23 +89,24 @@ def defect_figure():
 
 
 def matting_figure():
+    # The samples/ folder also holds *_before_* files. They are not shown: the training
+    # script writes them when a run starts or resumes, and this run resumed (its
+    # before_val IoU 0.9621 equals the epoch-55 history entry), so they are a mid-run
+    # checkpoint, not the published U2-Net weights.
     s = ROOT / "product-matting" / "samples"
     picks = ["00210", "01069", "01132", "01327"]
     rows = []
     for stem in picks:
         truth = load(s / f"{stem}_ground_truth.png")
-        before = load(s / f"{stem}_before_alpha.png")
         after = load(s / f"{stem}_after_alpha.png")
         rows.append((f"image {stem}", [
             (load(s / f"{stem}_input.png"), ""),
             (truth, ""),
-            (on_checker(load(s / f"{stem}_before_cutout.png")),
-             f"IoU {iou(before, truth):.3f} / MAE {mae(before, truth):.4f}"),
-            (on_checker(load(s / f"{stem}_after_cutout.png")),
-             f"IoU {iou(after, truth):.3f} / MAE {mae(after, truth):.4f}"),
+            (after, f"IoU {iou(after, truth):.3f} / MAE {mae(after, truth):.4f}"),
+            (on_checker(load(s / f"{stem}_after_cutout.png")), ""),
         ]))
-    grid(rows, ["Input", "Ground-truth matte", "U2-Net, published weights", "U2-Net, fine-tuned"],
-         "Product matting on held-out test images (IoU / MAE of the alpha matte against the ground truth)",
+    grid(rows, ["Input", "Ground-truth matte", "Predicted matte", "Cut-out"],
+         "Product matting, fine-tuned U2-Net on held-out test images (IoU / MAE against the ground truth)",
          OUT / "product_matting.png")
 
 
